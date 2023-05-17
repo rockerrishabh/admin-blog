@@ -1,8 +1,8 @@
 import express from "express";
 import cookieParser from "cookie-parser";
-import { errorHandler, notFound } from "./middlewares/error.middleware";
+import { config } from "dotenv";
 import userRoutes from "./routes/user.route";
-import { prisma } from "./db/prisma";
+config();
 
 const PORT = process.env.PORT || 5000;
 
@@ -13,8 +13,8 @@ server.use(cookieParser());
 
 server.use("/api", userRoutes);
 
-server.use(notFound);
-server.use(errorHandler);
+// server.use(notFound);
+// server.use(errorHandler);
 server.listen(PORT, async () => {
   console.log(`Server is running on Port:- ${PORT}`);
 });
